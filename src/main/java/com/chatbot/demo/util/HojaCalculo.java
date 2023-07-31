@@ -36,7 +36,7 @@ import org.springframework.stereotype.Component;
 public class HojaCalculo {
 	private static final String APPLICATION_NAME = "Demo Chatbot";
 	private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
-	private static final String TOKENS_DIRECTORY_PATH = "../tokens";
+	private static final String TOKENS_DIRECTORY_PATH = "/tokens";
 
 	// ID spreadsheet, column containing options level 0
 	final String spreadsheetId = "1_ZBTPO7v18Y-03Vlv28p2OBMzdMvhlQa5c4VENOegf8";
