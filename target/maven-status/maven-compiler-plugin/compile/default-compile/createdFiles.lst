@@ -2,6 +2,7 @@ com\chatbot\demo\util\GestorMenus.class
 com\chatbot\demo\util\Response.class
 com\chatbot\demo\DemoMain.class
 com\chatbot\demo\controller\OpcionSeleccionada.class
+com\chatbot\demo\util\HojaCalculo2.class
 com\chatbot\demo\util\niveles0\Pasivo.class
 com\chatbot\demo\util\GestorTablaPreguntas.class
 com\chatbot\demo\util\HojaCalculo.class
