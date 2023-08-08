@@ -17,7 +17,7 @@ public class GestorTablaPreguntas {
 	// Constructors
 	public GestorTablaPreguntas() {
 
-		excel = hoja.getDataFromSheet();
+		excel = hoja.pruebaServicio();
 
 	}
 
