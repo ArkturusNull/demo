@@ -12,7 +12,7 @@ public class GestorTablaPreguntas {
 
 	private String idRespPadre = "N/A";
 
-	private int nivelPreguntas = 1;
+	private int nivelPreguntas = 0;
 
 	// Constructors
 	public GestorTablaPreguntas() {
@@ -32,7 +32,7 @@ public class GestorTablaPreguntas {
 		// List<String> options = new ArrayList<>();
 		List<String> options = new ArrayList<>();
 		List<Boolean> opsBloqueadas = new ArrayList<>();
-		
+
 		options.add("Inicio");
 		opsBloqueadas.add(false);
 
@@ -43,23 +43,24 @@ public class GestorTablaPreguntas {
 			if (nivelPreguntas != 1) {
 				idRespPadre = idRespPadre.substring(0, idRespPadre.length() - 2);
 			} else {
+				options.remove(0);
 				idRespPadre = "N/A";
 
 			}
 
 		} else {
-			if (idRespuesta == 0) {
+			if (nivelPreguntas != 1 && idRespuesta == 0) {
 				nivelPreguntas = 0;
 				idRespPadre = "N/A";
 				options.remove(0);
 				opsBloqueadas.remove(0);
 
-			} else {
+			} else  {
 				if (nivelPreguntas != 1) {
 					idRespPadre = idRespPadre + "." + String.valueOf(idRespuesta);
 
 				} else {
-					idRespPadre = String.valueOf(idRespuesta);
+					idRespPadre = String.valueOf(idRespuesta + 1);
 				}
 			}
 
