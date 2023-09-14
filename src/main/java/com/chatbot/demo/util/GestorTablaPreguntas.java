@@ -6,8 +6,9 @@ import java.util.List;
 public class GestorTablaPreguntas {
 
 	private HojaCalculo hoja = new HojaCalculo();
-	private List<List<Object>> excel;
-
+	private List<List<Object>> respuestas, preguntas;
+	private List<String> pregunta = new ArrayList<>();
+	
 	private Response respActual = new Response();
 
 	private String idRespPadre = "N/A";
@@ -16,9 +17,13 @@ public class GestorTablaPreguntas {
 
 	// Constructors
 	public GestorTablaPreguntas() {
+		respuestas = hoja.getDataFromSheet();
+		preguntas = hoja.getDescripcionesPreguntas();
 
-		excel = hoja.pruebaServicio();
+		for (List row : preguntas) {
+			pregunta.add(String.valueOf(row.get(1)));
 
+		}
 	}
 
 	/**
@@ -55,7 +60,7 @@ public class GestorTablaPreguntas {
 				options.remove(0);
 				opsBloqueadas.remove(0);
 
-			} else  {
+			} else {
 				if (nivelPreguntas != 1) {
 					idRespPadre = idRespPadre + "." + String.valueOf(idRespuesta);
 
@@ -67,7 +72,7 @@ public class GestorTablaPreguntas {
 			nivelPreguntas++;
 		}
 
-		for (List row : excel) {
+		for (List row : respuestas) {
 			String nivel = String.valueOf(row.get(1));
 			String idPadre = String.valueOf(row.get(3));
 
@@ -86,8 +91,9 @@ public class GestorTablaPreguntas {
 			options.add("Atras");
 			opsBloqueadas.add(false);
 		}
+		int numPregunta = (int) (Math.random() * pregunta.size());
 
-		respActual.setDescription("Elija el numero del asunto que desee consultar:");
+		respActual.setDescription(pregunta.get(numPregunta));
 		respActual.setOptions(options);
 		respActual.setBloquedOptions(opsBloqueadas);
 
