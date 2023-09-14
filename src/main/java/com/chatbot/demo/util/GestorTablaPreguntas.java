@@ -17,7 +17,8 @@ public class GestorTablaPreguntas {
 
 	// Constructors
 	public GestorTablaPreguntas() {
-		respuestas = hoja.getDataFromSheet();
+		//respuestas = hoja.getDataFromSheet();
+		respuestas = hoja.serviceCredentials();
 		preguntas = hoja.getDescripcionesPreguntas();
 
 		for (List row : preguntas) {
