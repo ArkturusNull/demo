@@ -1,6 +1,6 @@
 web:
   cors:
-    allowed-origins: "https://typical-verdant-leotard.glitch.me"
+    allowed-origins: "https://chat-bbva.onrender.com/"
     allowed-methods: GET, POST, PATCH, PUT, DELETE, OPTIONS, HEAD
     max-age: 3600
     allowed-headers: "Requestor-Type"

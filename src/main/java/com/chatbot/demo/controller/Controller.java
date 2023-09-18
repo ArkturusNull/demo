@@ -16,7 +16,6 @@ public class Controller {
 
 	private GestorTablaPreguntas gestPreg;
 	
-	@CrossOrigin(origins = "https://chat-bbva.onrender.com", allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
 	@GetMapping("getData")
 	public Response readGoogleSheet() {
 		gestPreg = new GestorTablaPreguntas();
@@ -25,7 +24,6 @@ public class Controller {
 		return gestPreg.getRespActual();
 	}
 
-	@CrossOrigin(origins = "https://chat-bbva.onrender.com", allowedHeaders = "Requestor-Type", exposedHeaders = "X-Get-Header")
 	@PostMapping("sendSelection")
 	@ResponseBody
 	public Response sendSelectedOption(@RequestBody OpcionSeleccionada opcion) {
