@@ -1,0 +1,7 @@
+web:
+  cors:
+    allowed-origins: "https://typical-verdant-leotard.glitch.me"
+    allowed-methods: GET, POST, PATCH, PUT, DELETE, OPTIONS, HEAD
+    max-age: 3600
+    allowed-headers: "Requestor-Type"
+    exposed-headers: "X-Get-Header"
