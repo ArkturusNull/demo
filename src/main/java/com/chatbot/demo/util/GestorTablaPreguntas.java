@@ -19,14 +19,14 @@ public class GestorTablaPreguntas {
 
 	// Constructors
 	public GestorTablaPreguntas() {
-		try {
+		/*try {
 			respuestas = hoja.getDataFromSheet();
 		} catch (GoogleJsonResponseException gje) {
 			gje.printStackTrace();
 		}
-		preguntas = hoja.getDescripcionesPreguntas1();
-		// respuestas = hoja.serviceCredentials();
-		// preguntas = hoja.getDescripcionesPreguntas2();
+		preguntas = hoja.getDescripcionesPreguntas1();*/
+		 respuestas = hoja.serviceCredentials();
+		 preguntas = hoja.getDescripcionesPreguntas2();
 
 		for (List row : preguntas) {
 			pregunta.add(String.valueOf(row.get(1)));
@@ -41,7 +41,6 @@ public class GestorTablaPreguntas {
 	 * 
 	 */
 	public void cambiarDeNivel(int idRespuesta) {
-
 		// List<String> options = new ArrayList<>();
 		List<String> options = new ArrayList<>();
 		List<Boolean> opsBloqueadas = new ArrayList<>();
@@ -51,35 +50,35 @@ public class GestorTablaPreguntas {
 
 		int respAtras = respActual.getOptions().size() - 1;
 
-		if (idRespuesta == respAtras) {
-			nivelPreguntas--;
-			if (nivelPreguntas != 1) {
-				idRespPadre = idRespPadre.substring(0, idRespPadre.length() - 2);
-			} else {
-				options.remove(0);
-				idRespPadre = "N/A";
-
-			}
-
-		} else {
-			if (nivelPreguntas != 1 && idRespuesta == 0) {
-				nivelPreguntas = 0;
-				idRespPadre = "N/A";
-				options.remove(0);
-				opsBloqueadas.remove(0);
-
-			} else {
+		if(nivelPreguntas != 1) {
+			if (idRespuesta == respAtras) {
+				nivelPreguntas--;
 				if (nivelPreguntas != 1) {
-					idRespPadre = idRespPadre + "." + String.valueOf(idRespuesta);
+					idRespPadre = idRespPadre.substring(0, idRespPadre.length() - 2);
+				} else {
+					options.remove(0);
+					idRespPadre = "N/A";
+
+				}
+
+			} else {
+				if (idRespuesta == 0) {
+					nivelPreguntas = 1;
+					idRespPadre = "N/A";
+					options.remove(0);
+					opsBloqueadas.remove(0);
 
 				} else {
-					idRespPadre = String.valueOf(idRespuesta + 1);
+						idRespPadre = idRespPadre + "." + String.valueOf(idRespuesta);
+						nivelPreguntas++;
 				}
 			}
-
+			
+		}else {
+			idRespPadre = String.valueOf(idRespuesta + 1);
 			nivelPreguntas++;
 		}
-
+		
 		for (List row : respuestas) {
 			String nivel = String.valueOf(row.get(1));
 			String idPadre = String.valueOf(row.get(3));
@@ -106,7 +105,8 @@ public class GestorTablaPreguntas {
 		respActual.setBloquedOptions(opsBloqueadas);
 
 	}
-
+	
+	
 	public Response getRespActual() {
 		return respActual;
 	}
