@@ -3,12 +3,14 @@ package com.chatbot.demo.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
+
 public class GestorTablaPreguntas {
 
 	private HojaCalculo hoja = new HojaCalculo();
 	private List<List<Object>> respuestas, preguntas;
 	private List<String> pregunta = new ArrayList<>();
-	
+
 	private Response respActual = new Response();
 
 	private String idRespPadre = "N/A";
@@ -17,10 +19,14 @@ public class GestorTablaPreguntas {
 
 	// Constructors
 	public GestorTablaPreguntas() {
-		//respuestas = hoja.getDataFromSheet();
-		//preguntas = hoja.getDescripcionesPreguntas1();
-		respuestas = hoja.serviceCredentials();
-		preguntas = hoja.getDescripcionesPreguntas2();
+		try {
+			respuestas = hoja.getDataFromSheet();
+		} catch (GoogleJsonResponseException gje) {
+			gje.printStackTrace();
+		}
+		preguntas = hoja.getDescripcionesPreguntas1();
+		// respuestas = hoja.serviceCredentials();
+		// preguntas = hoja.getDescripcionesPreguntas2();
 
 		for (List row : preguntas) {
 			pregunta.add(String.valueOf(row.get(1)));
